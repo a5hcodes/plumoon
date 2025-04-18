@@ -4,6 +4,7 @@ const Timer = () => {
     const [timeLeft, setTimeLeft] = useState(25 * 60);
     const [isRunning, setIsRunning] = useState(false);
     const [mode, setMode] = useState("focus");
+    const [totalTimeElapsed, setTotalTimeElapsed] = useState(0);
     const backgroundClass = mode === "focus" ? "bg-gradient-to-r from-pink-50 to-pink-200" : "bg-gradient-to-r from-blue-100 to-blue-300";
 
 
@@ -16,9 +17,21 @@ const Timer = () => {
             timer = setInterval(() => {
                 setTimeLeft((prev) => {
                     if (prev == 0) {
-                        clearInterval(timer);
+                        const audio = new Audio("audio/campana-40773.mp3");
+                        audio.play();
+
+                        if (totalTimeElapsed >= 2 * 60 * 60) {
+                            clearInterval(timer)
+                            setIsRunning(false)
+                            alert("Two hours Pomodoro session completed! 🎉");
+                            return 0;
+                        }
+
+                        setMode((prevMode) => prevMode === "focus" ? "break" : "focus");
+                        setIsRunning(true);
                         return 0;
                     }
+                    setTotalTimeElapsed((elapsed) => elapsed + 1);
                     return prev - 1;
                 })
             }, 1000)
@@ -27,8 +40,16 @@ const Timer = () => {
     }, [isRunning]);
 
     useEffect(() => {
-        setTimeLeft(mode === "focus" ? 25 * 60 : 5 * 60);
-        setIsRunning(false); // also stop timer when switching modes
+        if (totalTimeElapsed < 2 * 60 * 60) {
+            setTimeLeft(mode === "focus" ? 25 * 60 : 5 * 60);
+            setIsRunning(true); // also stop timer when switching modes
+
+            const audio = new Audio("audio/065433_indian-bell-chimewav-87163.mp3")
+            audio.play();
+        } else {
+            setIsRunning(false);
+        }
+
     }, [mode]);
 
     const formatTimer = (seconds) => {
@@ -41,7 +62,8 @@ const Timer = () => {
     const resetTimer = () => {
         setIsRunning(false);
         setTimeLeft(25 * 60);
-
+        setMode("focus");
+        setTotalTimeElapsed(0);
     }
     return (
         <div className={`flex items-center min-h-screen justify-center ${backgroundClass} transition-all duration-700`}>
