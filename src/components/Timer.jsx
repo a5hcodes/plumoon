@@ -58,7 +58,6 @@ const Timer = () => {
         // Only switch mode if total time is within 2 hours
         if (totalTimeElapsed < 2 * 60 * 60) {
             setTimeLeft(mode === "focus" ? 25 * 60 : 5 * 60); // Set duration
-            setIsRunning(true); // Auto-start next session
 
             const audio = new Audio("audio/076741_chimes-40066.mp3");
             audio.play(); // Chime sound on mode change
@@ -84,43 +83,43 @@ const Timer = () => {
 
     // UI JSX returned
     return (
-        <div className={`flex items-center min-h-screen justify-center ${backgroundClass} transition-all duration-700`}>
+        <div className={`animated-gradient flex items-center min-h-screen justify-center ${backgroundClass} transition-all duration-700 `}>
             <div className='flex flex-col gap-6'>
-                <h1 className='text-4xl font-bold text-pink-800 tracking-wider'>Plumoon - Pomodoro Timer</h1>
-
-                <p className='text-9xl font-extrabold tracking-widest m-2 p-3'>
+                <h2 className=' text-3xl font-bold text-pink-800 text-center'>Plumoon</h2>
+                <h1 className='sm:text-4xl md: text-5xl font-bold text-pink-800 tracking-wider text-center'>Pomodoro Timer</h1>
+                <p className='items-center justify-center sm:text-7xl md:text-9xl font-extrabold tracking-widest m-2 p-2 text-center'>
                     {formatTimer(timeLeft)} {/* Displays formatted timer */}
                 </p>
 
-                <p className='flex felx-col text-xl justify-center'>
+                <p className='text-center text-xl justify-center hover:shadow-2xl'>
                     {mode === "focus" ? "Focus Mode" : "Break Mode"}
                 </p>
 
                 {/* Control Buttons */}
                 <div className='flex gap-4 mt-4'>
                     <button
-                        className='bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md'
+                        className='font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md'
                         onClick={() => setIsRunning(!isRunning)}
                     >
                         {isRunning ? "Pause" : "Start"}
                     </button>
 
                     <button
-                        className='bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md'
+                        className='font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md'
                         onClick={resetTimer}
                     >
                         Reset
                     </button>
 
                     <button
-                        className='bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md'
+                        className=' font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md'
                         onClick={() => { setMode("focus") }}
                     >
                         Focus
                     </button>
 
                     <button
-                        className='bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md'
+                        className='font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md'
                         onClick={() => { setMode("break") }}
                     >
                         Break
