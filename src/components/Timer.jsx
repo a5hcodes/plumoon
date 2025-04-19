@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { motion } from "framer-motion";
+import { easeOut } from 'motion';
+
 
 // Main Timer component
 const Timer = () => {
@@ -10,6 +13,9 @@ const Timer = () => {
     const [mode, setMode] = useState("focus");
     // Tracks how much total time has passed during this Pomodoro session
     const [totalTimeElapsed, setTotalTimeElapsed] = useState(0);
+    const MotionButton = motion.button;
+    const MotionDiv = motion.div;
+    const MotionP = motion.p;
 
     // Dynamic background based on current mode
     const backgroundClass = mode === "focus"
@@ -83,50 +89,61 @@ const Timer = () => {
 
     // UI JSX returned
     return (
-        <div className={`animated-gradient flex items-center min-h-screen justify-center ${backgroundClass} transition-all duration-700 `}>
-            <div className='flex flex-col gap-6'>
+        <MotionDiv initial = {{opacity:0}} animate = {{opacity: 1}} transition={{duration: 0.9}}
+         className={`animated-gradient flex items-center min-h-screen justify-center ${backgroundClass} transition-all duration-700 `}>
+            <div className='flex flex-col sm:gap-4 md:gap-6'>
                 <h2 className=' text-3xl font-bold text-pink-800 text-center pixelify-sans'>Plumoon</h2>
-                <h1 className='sm:text-4xl md: text-5xl font-bold text-pink-800 tracking-wider text-center pixelify-sans'>Pomodoro Timer</h1>
-                <p className='items-center justify-center sm:text-7xl md:text-9xl font-extrabold tracking-widest m-2 p-2 text-center pixelify-sans text-pink-950 text-shadow-2xl hover:'>
+                <h1 className='sm:text-4xl md:text-5xl lg:text-6xl font-bold text-pink-800 tracking-wider text-center pixelify-sans'>Pomodoro Timer</h1>
+                <p className='text-center tracking-wider pixelify-sans text-pink-950 backdrop-blur-2xl'>2 hours long pomodoro timer</p>
+                <MotionP key={timeLeft} initial = {{opacity: 0.5}} animate = {{opacity: 0.9}} transition={{duration: 0.4, ease: easeOut}}
+                className='items-center justify-center sm:text-7xl md:text-9xl font-extrabold tracking-widest m-2 p-2 text-center pixelify-sans text-pink-950 hover:text-shadow-9xl'>
                     {formatTimer(timeLeft)} {/* Displays formatted timer */}
-                </p>
+                </MotionP>
 
-                <p className='text-center text-xl justify-center pixelify-sans'>
+                <p className='text-center  text-xl sm:text-lg justify-center pixelify-sans'>
                     {mode === "focus" ? "FOCUS MODE" : "BREAK MODE"}
                 </p>
 
                 {/* Control Buttons */}
-                <div className='flex gap-4 mt-4 pixelify-sans'>
-                    <button
-                        className='font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md pixel-border'
-                        onClick={() => setIsRunning(!isRunning)} 
+                <div className='flex flex-col sm:flex-row gap sm:justify-center sm:items-center gap-4 mt-4 pixelify-sans'>
+                    <MotionButton
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className='font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md pixel-border cursor-pointer'
+                        onClick={() => setIsRunning(!isRunning)}
                     >
                         {isRunning ? "Pause" : "Start"}
-                    </button>
+                    </MotionButton>
 
-                    <button
-                        className='font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md pixel-border'
+                    <MotionButton
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className='font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md pixel-border cursor-pointer'
                         onClick={resetTimer}
                     >
                         Reset
-                    </button>
+                    </MotionButton>
 
-                    <button
-                        className=' font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md pixel-border'
+                    <MotionButton
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className=' font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md pixel-border cursor-pointer'
                         onClick={() => { setMode("focus") }}
                     >
                         Focus
-                    </button>
+                    </MotionButton>
 
-                    <button
-                        className='font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md pixel-border'
+                    <MotionButton
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className='font-medium bg-pink-300 py-2 px-4 rounded-xl w-32 hover:bg-pink-900 hover:text-white transition duration-500 shadow-md pixel-border cursor-pointer'
                         onClick={() => { setMode("break") }}
                     >
                         Break
-                    </button>
+                    </MotionButton>
                 </div>
             </div>
-        </div>
+        </MotionDiv>
     );
 };
 
