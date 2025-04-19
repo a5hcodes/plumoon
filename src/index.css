@@ -3,10 +3,33 @@
 
 
 /* in your CSS or tailwind config file (if using custom classes) */
+
+.pixelify-sans {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.pixelify-sans {
+  font-family: "Pixelify Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
+/* ✅ Optional: Use similar classes for other fonts if needed */
+.lexend {
+  font-family: "Lexend", sans-serif;
+}
+.outfit {
+  font-family: "Outfit", sans-serif;
+}
+
 .pixel-border {
     box-shadow:
-      0 0 0 2px black,
-      4px 4px 0 0 black;
+      0 0 0 2px rgb(69, 6, 35),
+      4px 4px 0 0 rgb(69, 6, 35);
   }
 
   @keyframes floatRight {
@@ -25,7 +48,7 @@
     width: 300px;
   }
   .animated-gradient {
-    background: linear-gradient(-45deg, #f5c4df, #dca3c2, #bc95e3, #c1b0ec);
+    background: linear-gradient(-45deg, #f5c4df, #dca3c2, #d195e3, #d5b0ec);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
   }
