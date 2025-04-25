@@ -1,12 +1,30 @@
-# React + Vite
+# 🍅 Pomodoro Timer - Plumoon
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, animated Pomodoro Timer built with **React**, **Framer Motion**, and **Tailwind CSS**. Designed to boost productivity using the proven Pomodoro technique—25-minute focus sessions followed by short 5-minute breaks. The session runs for a total of 2 hours with sound alerts and a retro-pixel styled UI.
 
-Currently, two official plugins are available:
+## 🧠 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🕒 **25/5 minute Focus & Break Timer**
+- 🔄 Auto-switching between focus & break modes
+- 🔊 Sound alerts on mode change and session completion
+- ⏹️ Session stops automatically after 2 hours
+- 🎨 Dynamic background colors based on mode
+- 🧩 Pixel-inspired visual styling
+- 🎥 Smooth animations using **Framer Motion**
+- ⚙️ Responsive layout using **Tailwind CSS**
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js
+- A React project (e.g., created with Vite, Create React App, etc.)
+
+### Installation
+
+1. Copy `Timer.jsx` into your React project’s component folder.
+
+2. Install the required dependency:
+
+```bash
+npm install framer-motion
